@@ -3,7 +3,11 @@ package material;
 import java.time.LocalDate;
 
 
-public abstract class Material implements Idiscount {
+public abstract class Material implements Idiscount{
+    @Override
+    public double getRealMoney() {
+        return 0;
+    }
 
     private String id;
     private String name;
@@ -57,10 +61,10 @@ public abstract class Material implements Idiscount {
 //    public void add ();
 
 
-    @Override
-    public double getRealMoney() {
-        return 0;
-    }
+//    @Override
+//    public double getRealMoney() {
+//        return 0;
+//    }
 
 
 
