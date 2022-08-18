@@ -2,7 +2,10 @@ package material;
 
 import java.time.LocalDate;
 
+
 public class CrispyFlour extends Material implements Idiscount{
+    public String name;
+
     private int quantity;
     public CrispyFlour(){}
     public CrispyFlour(int quantity) {
