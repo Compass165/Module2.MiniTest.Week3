@@ -4,28 +4,21 @@ import java.time.LocalDate;
 
 
 public class CrispyFlour extends Material implements Idiscount{
-    public String name;
+    private double quantity;
 
-    private int quantity;
-    public CrispyFlour(){}
-    public CrispyFlour(int quantity) {
+    public CrispyFlour(double quantity) {
         this.quantity = quantity;
     }
 
-    public CrispyFlour(String id, String name, LocalDate manufacturingDate, int cost, int quantity) {
+    public CrispyFlour(String id, String name, LocalDate manufacturingDate, int cost, double quantity) {
         super(id, name, manufacturingDate, cost);
-        this.quantity = quantity;
-    }
-
-    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
     @Override
     public double getAmount() {
-        return this.quantity*getCost();
+        return quantity * getCost();
     }
-
 
     @Override
     public LocalDate getExpiryDate() {
@@ -34,13 +27,24 @@ public class CrispyFlour extends Material implements Idiscount{
 
     @Override
     public double getRealMoney() {
-        return 0;
+        double calculatorDays = LocalDate.now().compareTo(getManufacturingDate());
+        if (calculatorDays > 120) {
+            return getAmount()*60/100;
+        } else if (calculatorDays > 60) {
+            return getAmount()*80/100;
+        } else {
+            return getAmount()*95/100;
+        }
     }
 
     @Override
     public String toString() {
-        return  super.toString() +
-                "CrispyFlour " +
-                "quantity=" + quantity;
+        return "CrispyFlour{" +
+                "id='" + getId() + '\'' +
+                ", name='" + getName() + '\'' +
+                ", manufacturingDate=" + getManufacturingDate() +
+                ", cost=" + getCost() +
+                ", quantity=" + quantity +
+                '}';
     }
 }

@@ -3,11 +3,7 @@ package material;
 import java.time.LocalDate;
 
 
-public abstract class Material implements Idiscount{
-    @Override
-    public double getRealMoney() {
-        return 0;
-    }
+public abstract class Material{
 
     private String id;
     private String name;
@@ -57,14 +53,21 @@ public abstract class Material implements Idiscount{
 
     public abstract double getAmount();
 
+
     public abstract LocalDate getExpiryDate();
-//    public void add ();
 
-
-//    @Override
-//    public double getRealMoney() {
-//        return 0;
-//    }
+    public void addList(Object[] arrayBefore, int index, Object object) {
+        Object[] arrayAfter = new Object[arrayBefore.length + 1];
+        for (int i = 0; i < arrayBefore.length; i++) {
+            if (i < index) {
+                arrayAfter[i] = arrayBefore[i];
+            } else if (i == index) {
+                arrayAfter[i] = object;
+            } else {
+                arrayAfter[i] = arrayBefore[i-1];
+            }
+        }
+    }
 
 
 
